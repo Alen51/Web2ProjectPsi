@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Web2Project.Baza;
+using Web2Project.Infrastructure;
+using Web2Project.Mapping;
 
 namespace Web2Project
 {
@@ -29,14 +31,14 @@ namespace Web2Project
             //registracija db contexta u kontejneru zavisnosti, njegov zivotni vek je Scoped
             services.AddDbContext<CRUD_Context>(options => options.UseSqlServer(Configuration.GetConnectionString("CRUD_ContextDB")));
             //Registracija mapera u kontejneru, zivotni vek singleton
-            /*
+
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
             });
 
             IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);*/
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

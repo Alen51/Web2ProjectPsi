@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Web2Project.Models;
 
-namespace Web2Project.Models
+namespace Web2Project.Infrastructure.Configurations
 {
     public class KorisnikConfiguration : IEntityTypeConfiguration<Korisnik>
     {
@@ -20,7 +21,7 @@ namespace Web2Project.Models
             builder.HasMany(x => x.NovePorudzbine);
 
             builder.HasMany(x => x.PredhodnePorudzbine);
-                   
+
         }
     }
 }
