@@ -2,6 +2,7 @@
 {
     public class PaketDto
     {
+        
         public string Naziv { get; set; }
         public double Cena { get; set; }
         public int Kolicina { get; set; }

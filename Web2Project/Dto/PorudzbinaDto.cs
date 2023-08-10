@@ -2,6 +2,7 @@
 {
     public class PorudzbinaDto
     {
+        public string Id { get; set; }
         public string ProdavacId { get; set; }
         public string KupacId { get; set; }
         public string Informacija { get; set; }

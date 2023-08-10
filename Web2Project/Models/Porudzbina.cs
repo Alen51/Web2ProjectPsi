@@ -2,6 +2,8 @@
 {
     public class Porudzbina
     {
+        private string id;
+
         private string prodavacId;
 
         private string kupacId;
@@ -23,5 +25,6 @@
         public double Cena { get => cena; set => cena = value; }
         public DateTime VremeDostave { get => vremeDostave; set => vremeDostave = value; }
         public List<Paket> Artikli { get => artikli; set => artikli = value; }
+        public string Id { get => id; set => id = value; }
     }
 }
