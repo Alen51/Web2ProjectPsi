@@ -30,14 +30,14 @@ namespace Web2Project.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateStudent([FromBody] KorisnikDto korisnik)
+        public IActionResult CreateKorisnik([FromBody] KorisnikDto korisnik)
         {
             return Ok(_korisnikService.AddKorisnik(korisnik));
         }
 
 
         [HttpPut("{id}")]
-        public IActionResult ChangeStudent(string email , [FromBody] KorisnikDto korisnik)
+        public IActionResult ChangeKorisnik(string email , [FromBody] KorisnikDto korisnik)
         {
             return Ok(_korisnikService.UpdateKorisnik(email, korisnik));
         }
