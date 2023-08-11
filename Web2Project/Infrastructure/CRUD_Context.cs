@@ -7,11 +7,11 @@ namespace Web2Project.Baza
     {
         
 
-        public DbSet<Korisnik> Korisnik { get; set; }
+        public DbSet<Porudzbina> Korisnik { get; set; }
         public DbSet<Paket> Paket { get; set; }
         public DbSet<Porudzbina> Porudzbina { get; set; }
 
-        public CRUD_Context(DbContextOptions<CRUD_Context> options) : base(options)
+        public CRUD_Context(DbContextOptions options) : base(options)
 
         {
         }
