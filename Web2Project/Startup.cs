@@ -29,7 +29,7 @@ namespace Web2Project
             //services.AddScoped<IStudentService, StudentService>();
 
             //registracija db contexta u kontejneru zavisnosti, njegov zivotni vek je Scoped
-            services.AddDbContext<CRUD_Context>(options => options.UseSqlServer(Configuration.GetConnectionString("CRUD_ContextDB")));
+            services.AddDbContext<CRUD_Context>(options => options.UseSqlServer(Configuration.GetConnectionString("CRUD_Context")));
             //Registracija mapera u kontejneru, zivotni vek singleton
 
             var mapperConfig = new MapperConfiguration(mc =>
