@@ -19,7 +19,7 @@ export const LoginUser = async (email,lozinka) => {
     return response;
 
   } catch (err) {
-    alert("Nesto se desilo prilikom logovanja");
+    alert("Error while login");
     return null;
   }
 };
@@ -37,7 +37,30 @@ export const RegisterUser = async (korisnikJSON) => {
         const response = new ResponseDto(data);
         return response;
     }catch(err){
-        alert("Nesto se desilo prilikom registracije");
+        alert("Error while registeration");
         return null;
     }
+}
+
+export const EditProfile = async (updatedKorisnikJSON, id, token) => {
+  const UPDATE_URL = "/users/" + id ; //treba da dobije id isto
+  try{
+      const {data} = await axios.put(
+          `${process.env.REACT_APP_API_BACK}${UPDATE_URL}`,
+          updatedKorisnikJSON,
+          {
+              headers: 
+              {
+                  'Content-Type' : 'application/json',
+                  'Authorization' : token
+              },
+              withCredentials: true
+          }
+      );
+      const updatedKorisnik = new KorisnikDto(data);
+      return updatedKorisnik;
+  }catch(err){
+      console.log(err);
+      alert("Error while profile data edit")
+  }
 }
