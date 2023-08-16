@@ -1,38 +1,75 @@
-.App {
-  text-align: center;
+.App{
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container{
+  padding-top: 5%;
+  height: 100%;
+  transform: translateY(-1rem);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card{
+  margin: 0 auto;
+  margin-bottom: 5%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  
+  background:white;
+  width: 35rem;
+  padding: 2rem 3rem 3rem 3rem;
+  border-radius: 10px;
+  box-shadow: 2px 2px 15px black;
 }
 
-.App-link {
-  color: #61dafb;
+.verification-container{
+  margin: 0 auto;
+  width: 70%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.loader-container{
+  padding-top: 20%;
+}
+
+.load-picture-button{
+  padding: 2.8rem 0 0 2rem;
+  margin-left: 1rem;
+}
+
+.textarea-resize {
+  resize: none !important;
+}
+
+.poruci-btn{
+  padding-bottom: 10%;
+}
+
+.buttons-flex{
+  display: flex;
+  justify-content:space-between;
+}
+
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Select some files';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }

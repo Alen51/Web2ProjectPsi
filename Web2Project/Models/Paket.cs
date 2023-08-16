@@ -2,26 +2,17 @@
 {
     public class Paket
     {
-        private string id;
+        public Paket(){}
 
-        private string naziv;
-
-        private double cena;
-
-        private int kolicina;
-
-        private string opis;
-
-        private string slika;
-
-        
-
-        public string Naziv { get => naziv; set => naziv = value; }
-        public double Cena { get => cena; set => cena = value; }
-        public int Kolicina { get => kolicina; set => kolicina = value; }
-        public string Opis { get => opis; set => opis = value; }
-        public string Slika { get => slika; set => slika = value; }
-        public string Id { get => id; set => id = value; }
+        public long Id;
+        public string Naziv { get; set; }
+        public double Cena { get; set; }
+        public double CenaDostave { get; set; }
+        public int Kolicina { get; set; }
+        public string Opis { get; set; }
+        public string Fotografija { get; set; }
+        public long ProdavacId { get; set; }
+        public Korisnik Prodavac { get; set; }
         
     }
 }

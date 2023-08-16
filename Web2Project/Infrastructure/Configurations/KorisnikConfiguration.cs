@@ -8,19 +8,12 @@ namespace Web2Project.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Korisnik> builder)
         {
-            builder.HasKey(x => x.Email);
-
-            builder.Property(x => x.Email).ValueGeneratedOnAdd();
-
-            builder.Property(x => x.KorisnickoIme).HasMaxLength(40);
-
-            builder.Property(x => x.Adresa).HasMaxLength(40);
-
-            builder.Property(x => x.TipKoorisnika).HasMaxLength(15);
-
-            builder.HasMany(x => x.NovePorudzbine);
-
-            builder.HasMany(x => x.PredhodnePorudzbine);
+             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.KorisnickoIme).HasMaxLength(50);
+            builder.Property(x => x.Ime).HasMaxLength(30);
+            builder.Property(x => x.Prezime).HasMaxLength(30);
+            builder.HasIndex(x => x.Email).IsUnique();
 
         }
     }

@@ -2,12 +2,14 @@
 {
     public class PorudzbinaDto
     {
-        public string Id { get; set; }
-        public string ProdavacId { get; set; }
-        public string KupacId { get; set; }
-        public string Informacija { get; set; }
-        public int Kolicina { get; set; }
-        public double Cena { get; set; }
-        public DateTime VremeDostave { get; set; }
+       public long Id { get; set; }
+        public string Komentar { get; set; }
+        public string Adresa { get; set; }
+        public DateTime DatumDostave { get; set; }
+        public DateTime DatumKreiranja { get; set; }
+        public StanjePorudzbine StanjePorudzbine { get; set; }
+        public long KorisnikId { get; set; }
+        public List<ArtikalPorudzbineDto> ArtikliPorudzbine { get; set; }
+        public double CenaPorudzbine { get; set; }
     }
 }
