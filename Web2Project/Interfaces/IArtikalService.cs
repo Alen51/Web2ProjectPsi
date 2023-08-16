@@ -2,7 +2,7 @@
 
 namespace Web2Project.Interfaces
 {
-    public interface IPaketService
+    public interface IArtikalService
     {
         Task<ArtikalDto> AddArtikal(ArtikalDto newArtikalDto);
         Task<List<ArtikalDto>> GetAllArtikals();

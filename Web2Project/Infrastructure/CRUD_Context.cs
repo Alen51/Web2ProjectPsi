@@ -8,7 +8,7 @@ namespace Web2Project.Baza
         
 
         public DbSet<Porudzbina> Korisnik { get; set; }
-        public DbSet<Paket> Paket { get; set; }
+        public DbSet<Artikal> Paket { get; set; }
         public DbSet<Porudzbina> Porudzbina { get; set; }
 
         public CRUD_Context(DbContextOptions options) : base(options)

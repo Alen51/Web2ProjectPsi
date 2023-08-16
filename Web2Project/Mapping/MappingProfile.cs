@@ -10,7 +10,7 @@ namespace Web2Project.Mapping
         { 
             
             CreateMap<Porudzbina,KorisnikDto>().ReverseMap();
-            CreateMap<Paket,PaketDto>().ReverseMap();
+            CreateMap<Artikal,ArtikalDto>().ReverseMap();
             CreateMap<Porudzbina,PorudzbinaDto>().ReverseMap();
         
         }

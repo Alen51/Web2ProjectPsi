@@ -1,4 +1,6 @@
-﻿namespace Web2Project.Dto
+﻿using static Web2Project.Enums.Enumerations;
+
+namespace Web2Project.Dto
 {
     public class PorudzbinaDto
     {

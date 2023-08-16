@@ -1,8 +1,8 @@
 ﻿namespace Web2Project.Models
 {
-    public class Paket
+    public class Artikal
     {
-        public Paket(){}
+        public Artikal(){}
 
         public long Id;
         public string Naziv { get; set; }

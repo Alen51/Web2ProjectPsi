@@ -1,45 +1,112 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using Web2Project.Dto;
 using Web2Project.Interfaces;
 
 namespace Web2Project.Controllers
 {
-    [Route("api/korisnici")]
+    [Route("api/users")]
     [ApiController]
-    public class KorisnikController:ControllerBase
+    public class KorisnikController : ControllerBase
     {
         private readonly IKorisnikService _korisnikService;
+        private readonly IEmailService _emailVerifyService;
 
-        public KorisnikController(IKorisnikService korisnikInterface)
+        public KorisnikController(IKorisnikService korisnikService, IEmailService emailVerifyService)
         {
-            _korisnikService = korisnikInterface;
+            _korisnikService = korisnikService;
+            _emailVerifyService = emailVerifyService;
         }
 
-        [HttpGet("all")]
-        public IActionResult GetAll()
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_korisnikService.GetKorisnike());
+            List<KorisnikDto> korisnici = await _korisnikService.GetAllKorisnik();
+            return Ok(korisnici);
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(string email)
+        public async Task<IActionResult> GetKorisnikById(long id)
         {
-            return Ok(_korisnikService.GetByEmail(email));
+            return Ok(await _korisnikService.GetKorisnikById(id));
         }
-
 
         [HttpPost]
-        public IActionResult CreateKorisnik([FromBody] KorisnikDto korisnik)
+        public async Task<IActionResult> CreateKorisnik([FromBody] KorisnikDto korisnik)
         {
-            return Ok(_korisnikService.AddKorisnik(korisnik));
+            return Ok(await _korisnikService.AddKorisnik(korisnik));
         }
-
 
         [HttpPut("{id}")]
-        public IActionResult ChangeKorisnik(string email , [FromBody] KorisnikDto korisnik)
+        public async Task<IActionResult> ChangeKorisnik(long id, [FromBody] KorisnikDto korisnik)
         {
-            return Ok(_korisnikService.UpdateKorisnik(email, korisnik));
+            KorisnikDto updatedKorisnik = await _korisnikService.UpdateKorisnik(id, korisnik);
+            if (updatedKorisnik == null)
+            {
+                return BadRequest("Postoje neka prazna polja(mozda korisnik ne postoji)");
+            }
+
+            updatedKorisnik.Lozinka = korisnik.Lozinka;
+            return Ok(updatedKorisnik);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteKorisnik(long id)
+        {
+            await _korisnikService.DeleteKorisnik(id);
+            return Ok($"Korisnik sa id = {id} je uspesno obrisan.");
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginKorisnikDto loginKorisnikDto)
+        {
+            ResponseDto responseDto = await _korisnikService.Login(loginKorisnikDto);
+            if (responseDto.KorisnikDto == null)
+            {
+                return BadRequest(responseDto.Result);
+            }
+
+            responseDto.KorisnikDto.Lozinka = loginKorisnikDto.Lozinka;
+            return Ok(responseDto);
+        }
+
+        [HttpPost("registration")]
+        public async Task<IActionResult> Registration([FromBody] KorisnikDto registerKorisnikDto)
+        {
+            ResponseDto responseDto = await _korisnikService.Registration(registerKorisnikDto);
+            if (responseDto.KorisnikDto == null)
+                return BadRequest(responseDto.Result);
+
+            responseDto.KorisnikDto.Lozinka = registerKorisnikDto.Lozinka;
+            return Ok(responseDto);
+        }
+
+
+        [HttpGet("getProdavce")]
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> GetProdavce()
+        {
+            return Ok(await _korisnikService.GetProdavce());
+        }
+
+
+        [HttpPut("verifyProdavca/{id}")]
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> VerifyProdavca(long id, [FromBody] string statusVerifikacije)
+        {
+            List<KorisnikDto> verifiedProdavci = await _korisnikService.VerifyProdavce(id, statusVerifikacije);
+            if (verifiedProdavci == null)
+            {
+                return BadRequest("Ne postoji prodavac");
+            }
+
+            KorisnikDto prodavac = await _korisnikService.GetKorisnikById(id);
+            _emailVerifyService.SendVerificationMail(prodavac.Email, statusVerifikacije);
+
+            return Ok(verifiedProdavci);
+        }
+
     }
 }

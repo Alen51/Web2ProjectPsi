@@ -1,5 +1,7 @@
 ﻿
 
+using static Web2Project.Enums.Enumerations;
+
 namespace Web2Project.Models
 {
     public class Korisnik
@@ -17,6 +19,6 @@ namespace Web2Project.Models
         public StatusVerifikacije StatusVerifikacije { get; set; }
         public List<Porudzbina> Porudzbine { get; set; }
         public double CenaDostave { get; set; }
-        public List<Paket> ProdavceviArtikli { get; set; }
+        public List<Artikal> ProdavceviArtikli { get; set; }
     }
 }
