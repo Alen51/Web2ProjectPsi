@@ -4,10 +4,11 @@ namespace Web2Project.Interfaces
 {
     public interface IPaketService
     {
-        List<PaketDto> GetPakete();
-        PaketDto GetById(string id);
-        PaketDto AddPaket(PaketDto newPaket);
-        PaketDto UpdatePaket(string id, PaketDto newPaketData);
-        void deletePaket(string email);
+        Task<ArtikalDto> AddArtikal(ArtikalDto newArtikalDto);
+        Task<List<ArtikalDto>> GetAllArtikals();
+        Task<ArtikalDto> GetArtikalById(long id);
+        Task<ArtikalDto> UpdateArtikal(long id, ArtikalDto updateArtikalDto);
+        Task<bool> DeleteArtikal(long id);
+        Task<List<ArtikalDto>> GetProdavceveArtikle(long id);
     }
 }
