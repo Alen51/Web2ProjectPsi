@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Baza\" />
-    <Folder Include="Service\" />
   </ItemGroup>
 
 </Project>
