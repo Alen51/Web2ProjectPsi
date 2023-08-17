@@ -4,9 +4,9 @@ using Web2Project.Models;
 
 namespace Web2Project.Infrastructure.Configurations
 {
-    public class PaketConfiguration : IEntityTypeConfiguration<Paket>
+    public class PaketConfiguration : IEntityTypeConfiguration<Artikal>
     {
-        public void Configure(EntityTypeBuilder<Paket> builder)
+        public void Configure(EntityTypeBuilder<Artikal> builder)
         {
             builder.HasKey(x => x.Id);
 

@@ -1,6 +1,6 @@
 ﻿namespace Web2Project.Dto
 {
-    public class PaketDto
+    public class ArtikalDto
     {
         
         public long Id { get; set; }

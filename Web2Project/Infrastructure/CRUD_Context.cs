@@ -5,11 +5,12 @@ namespace Web2Project.Baza
 {
     public class CRUD_Context: DbContext
     {
-        
 
-        public DbSet<Porudzbina> Korisnik { get; set; }
-        public DbSet<Paket> Paket { get; set; }
-        public DbSet<Porudzbina> Porudzbina { get; set; }
+
+        public DbSet<Korisnik> Korisnici { get; set; }
+        public DbSet<Artikal> Artikli { get; set; }
+        public DbSet<Porudzbina> Porudzbine { get; set; }
+        public DbSet<ArtikalPorudzbine> ArtikliUPorudzbinama { get; set; }
 
         public CRUD_Context(DbContextOptions options) : base(options)
 

@@ -14,7 +14,7 @@ namespace Web2Project.Controllers
         { 
             _porudzbinaService = porudzbinaService;
         }
-
+        /*
         [HttpGet("all")]
         public IActionResult GetAll()
         {
@@ -39,6 +39,6 @@ namespace Web2Project.Controllers
         public IActionResult ChangePorudzbina(string id, [FromBody] PorudzbinaDto porudzbina)
         {
             return Ok(_porudzbinaService.UpdatePorudzbina(id, porudzbina));
-        }
+        }*/
     }
 }
