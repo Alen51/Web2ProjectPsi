@@ -75,6 +75,7 @@ function App() {
 
   return (
     <div className='App'>
+     
       <NavBar isAuth={isAuth} tipKorisnika = {tipKorisnika} statusVerifikacije={statusVerifikacije} handleLogout={handleLogout}/>
       <div className='container'>
         <Routes>
@@ -84,7 +85,9 @@ function App() {
             ))
           }
         </Routes>
+        
       </div>
+      
     </div>
   );
 }
