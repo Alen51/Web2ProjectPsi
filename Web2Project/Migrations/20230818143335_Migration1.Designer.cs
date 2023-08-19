@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web2Project.Baza;
 
@@ -11,9 +12,10 @@ using Web2Project.Baza;
 namespace Web2Project.Migrations
 {
     [DbContext(typeof(CRUD_Context))]
-    partial class CRUD_ContextModelSnapshot : ModelSnapshot
+    [Migration("20230818143335_Migration1")]
+    partial class Migration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
