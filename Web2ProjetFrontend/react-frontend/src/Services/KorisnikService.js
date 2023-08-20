@@ -64,3 +64,52 @@ export const EditProfile = async (updatedKorisnikJSON, id, token) => {
       alert("Error while profile data edit")
   }
 }
+
+export const GetAllProdavce = async (token) => {
+  const GET_PRODAVCE_URL = '/users/getProdavce'
+  try{
+      const {data} = await axios.get(
+          `${process.env.REACT_APP_API_BACK}${GET_PRODAVCE_URL}`,
+          {
+              headers:{
+                  'Content-Type' : 'application/json',
+                  Authorization : `Bearer ${token}`
+              },
+          }
+      );
+      const prodavci = data.map(prodavac => {
+          return new KorisnikDto(prodavac);
+      })
+      return prodavci;
+  }catch(err){
+      console.log(err);
+      alert("Nesto se desilo prilikom dobavljanja prodavaca");
+      return null;
+  }
+}
+
+export const VerifyProdavca = async (prodavacId, buttonType, token) =>{
+  const VERIFY_PRODAVCA = '/users/verifyProdavca/';
+  try{
+      const {data} = await axios.put(
+          `${process.env.REACT_APP_API_BACK}${VERIFY_PRODAVCA}${prodavacId}`,
+          buttonType,
+          {
+              headers:{
+                  'Content-Type' : 'application/json',
+                  'Authorization' : `Bearer ${token}`
+              },
+              withCredentials: true
+          }
+      );
+      const verifikovaniProdavci = data.map(verifikovanProdavac => {
+          return new KorisnikDto(verifikovanProdavac);
+      })
+      return verifikovaniProdavci;
+  }catch(err){
+      console.log(err);
+      alert("Nesto se desilo prilikom verifikacije prodavca");
+      return null;
+  }
+
+}

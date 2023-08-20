@@ -7,8 +7,12 @@ import Login from './Components/LoginAndRegisterComponents/Login';
 import Registration from './Components/LoginAndRegisterComponents/Registration';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-
+import KupacDashboard from './Components/KupacComponents/KupacDashboard';
+import KupacPorudzbine from './Components/KupacComponents/KupacPorudzbine';
+import KupacPoruci from './Components/KupacComponents/KupacPoruci';
+import ProdavacDashboard from './Components/ProdavacComponents/ProdavacDashboard';
+import ProdavacDodajArtikal from './Components/ProdavacComponents/ProdavacDodajArtikal';
+import Profil from './Components/ProfileComponents/Profil';
 
 function App() {
 
@@ -53,12 +57,12 @@ function App() {
     {path: '/', element: <Home></Home>},
     {path: '/login', element: <Login handleKorisnikInfo={handleKorisnikInfo}></Login>},
     {path: '/registration', element: <Registration handleKorisnikInfo={handleKorisnikInfo}></Registration>},
-    {path: '/kupacDashboard', element: <Home></Home>},
-    {path: '/kupacDashboard/kupacPoruci' , element:<Home></Home>},
-    {path: '/kupacPorudzbine', element: <Home></Home>},
+    {path: '/kupacDashboard', element: <KupacDashboard></KupacDashboard>},
+    {path: '/kupacDashboard/kupacPoruci' , element:<KupacPoruci></KupacPoruci>},
+    {path: '/kupacPorudzbine', element: <KupacPorudzbine></KupacPorudzbine>},
     {path: '/kupacPorudzbine/PrikazPorudzbine/:id', element: <Home></Home>},
-    {path: '/prodavacDashboard', element: <Home></Home>},
-    {path: '/prodavacDodajArtikal', element:<Home></Home>},
+    {path: '/prodavacDashboard', element: <ProdavacDashboard></ProdavacDashboard>},
+    {path: '/prodavacDodajArtikal', element:<ProdavacDodajArtikal></ProdavacDodajArtikal>},
     {path: '/prodavacNovePorudzbine', element: <Home></Home>},
     {path: '/prodavacPrethodnePorudzbine', element: <Home></Home>},
     {path: '/prodavacNovePorudzbine/PrikazPorudzbine/:id', element: <Home></Home>},
@@ -69,7 +73,7 @@ function App() {
     {path: '/adminVerifikacija', element: <Home></Home>},
     {path: '/adminSvePorudzbine', element: <Home></Home>},
     {path: '/adminSvePorudzbine/PrikazPorudzbine/:id', element: <Home></Home>},
-    {path: '/profil', element: <Home></Home>}
+    {path: '/profil', element: <Profil></Profil>}
     
   ]
 
