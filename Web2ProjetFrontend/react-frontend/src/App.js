@@ -10,9 +10,13 @@ import { useEffect, useState } from 'react';
 import KupacDashboard from './Components/KupacComponents/KupacDashboard';
 import KupacPorudzbine from './Components/KupacComponents/KupacPorudzbine';
 import KupacPoruci from './Components/KupacComponents/KupacPoruci';
+import AdminDashboard from './Components/AdministratorComponents/AdminDashboard';
+import AdminSvePorudzbine from './Components/AdministratorComponents/AdminSvePorudzbine';
+import AdminVerifikacija from './Components/AdministratorComponents/AdminVerfikacija';
 import ProdavacDashboard from './Components/ProdavacComponents/ProdavacDashboard';
 import ProdavacDodajArtikal from './Components/ProdavacComponents/ProdavacDodajArtikal';
 import Profil from './Components/ProfileComponents/Profil';
+import PrikazPorudzbine from './Components/PorudzbinaComponents/PrikazPorudzbina'
 
 function App() {
 
@@ -69,10 +73,10 @@ function App() {
     {path: '/prodavacPrethodnePorudzbine/PrikazPorudzbine/:id', element: <Home></Home>},
     {path: '/prodavacPregledArtikala', element:<Home></Home>},
     {path: '/prodavacPregledArtikala/IzmeniArtikal/:id', element: <Home></Home>},
-    {path: '/adminDashboard', element: <Home></Home>},
-    {path: '/adminVerifikacija', element: <Home></Home>},
-    {path: '/adminSvePorudzbine', element: <Home></Home>},
-    {path: '/adminSvePorudzbine/PrikazPorudzbine/:id', element: <Home></Home>},
+    {path: '/adminDashboard', element: <AdminDashboard></AdminDashboard>},
+    {path: '/adminVerifikacija', element: <AdminVerifikacija></AdminVerifikacija>},
+    {path: '/adminSvePorudzbine', element: <AdminSvePorudzbine></AdminSvePorudzbine>},
+    {path: '/adminSvePorudzbine/PrikazPorudzbine/:id', element: <PrikazPorudzbine></PrikazPorudzbine>},
     {path: '/profil', element: <Profil></Profil>}
     
   ]
