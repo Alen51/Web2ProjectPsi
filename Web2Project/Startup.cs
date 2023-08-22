@@ -9,6 +9,7 @@ using Web2Project.Baza;
 using Web2Project.Infrastructure;
 using Web2Project.Interfaces;
 using Web2Project.Mapping;
+using Web2Project.Service;
 
 namespace Web2Project
 {
@@ -97,12 +98,13 @@ namespace Web2Project
                  .Get<EmailVerifyConfiguration>();
             services.AddSingleton(emailVerifyConfiguration);*/
 
-            /*
+            
             services.AddScoped<IArtikalService, ArtikalService>();
             services.AddScoped<IKorisnikService, KorisnikService>();
             services.AddScoped<IPorudzbinaService, PorudzbinaService>();
-            services.AddScoped<IEmailService, EmailVerifyService>();
-            */
+
+            //services.AddScoped<IEmailService, EmailVerifyService>();
+            
             //registracija db contexta u kontejneru zavisnosti, njegov zivotni vek je Scoped
             services.AddDbContext<CRUD_Context>(options => options.UseSqlServer(Configuration.GetConnectionString("CRUD_Context")));
             //Registracija mapera u kontejneru, zivotni vek singleton
