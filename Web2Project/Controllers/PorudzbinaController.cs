@@ -1,44 +1,117 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Web2Project.Dto;
 using Web2Project.Interfaces;
 
 namespace Web2Project.Controllers
 {
-    [Route("api/porudzbine")]
+    [Route("api/orders")]
     [ApiController]
     public class PorudzbinaController : ControllerBase
     {
         private readonly IPorudzbinaService _porudzbinaService;
 
-        public PorudzbinaController(IPorudzbinaService porudzbinaService) 
-        { 
+        public PorudzbinaController(IPorudzbinaService porudzbinaService)
+        {
             _porudzbinaService = porudzbinaService;
         }
-        /*
-        [HttpGet("all")]
-        public IActionResult GetAll()
+
+        [HttpGet]
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> GetAllPorudzbina()
         {
-            return Ok(_porudzbinaService.GetPorudzbine());
+            return Ok(await _porudzbinaService.GetAllPorudzbina());
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        [Authorize(Roles = "kupac,prodavac,administrator")]
+        public async Task<IActionResult> GetById(long id) //id porudzbine
         {
-            return Ok(_porudzbinaService.GetById(id));
+            PorudzbinaPrikazDto porudzbinaZaPrikazDto = await _porudzbinaService.GetPorudzbinaById(id);
+            if (porudzbinaZaPrikazDto == null)
+            {
+                return BadRequest("Porudzbina ne postoji");
+            }
+
+            return Ok(porudzbinaZaPrikazDto);
         }
 
-
-        [HttpPost]
-        public IActionResult CreatePorudzbina([FromBody] PorudzbinaDto porudzbina)
+        //izbaciti ovde add, jer je ovo crud operacija
+        [HttpPost("addPorudzbina")]
+        [Authorize(Roles = "kupac")]
+        public async Task<IActionResult> CreatePorudzbina([FromBody] PorudzbinaDto porudzbina)
         {
-            return Ok(_porudzbinaService.AddPorudzbina(porudzbina));
+            PorudzbinaDto newPorudzbinaDto = await _porudzbinaService.AddPorudzbina(porudzbina);
+            if (newPorudzbinaDto == null)
+            {
+                return BadRequest("Postoji neki problem prilikom dodavanja porudzbine");
+            }
+            return Ok(newPorudzbinaDto);
         }
-
 
         [HttpPut("{id}")]
-        public IActionResult ChangePorudzbina(string id, [FromBody] PorudzbinaDto porudzbina)
+        public async Task<IActionResult> ChangePorudzbina(long id, [FromBody] PorudzbinaDto porudzbina)
         {
-            return Ok(_porudzbinaService.UpdatePorudzbina(id, porudzbina));
-        }*/
+            return Ok(await _porudzbinaService.UpdatePorudzbina(id, porudzbina));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePorudzbina(long id)
+        {
+            await _porudzbinaService.DeletePorudzbina(id);
+            return Ok($"Porudzbina sa id = {id} je uspesno obrisan.");
+        }
+
+        [HttpGet("getKupcevePorudzbine/{id}")]
+        [Authorize(Roles = "kupac")]
+        public async Task<IActionResult> GetKupcevePorudzbine(long id) // id kupca
+        {
+            List<PorudzbinaDto> korisnikovePorudzbineDto = await _porudzbinaService.GetKupcevePorudzbine(id);
+            if (korisnikovePorudzbineDto == null)
+            {
+                return BadRequest("Ne postoji korisnik sa datim id");
+            }
+            return Ok(korisnikovePorudzbineDto);
+        }
+
+
+        [HttpPut("otkaziPorudzbinu/{id}")]
+        [Authorize(Roles = "kupac")]
+        public async Task<IActionResult> OtkaziPorudzbine(long id, [FromBody] string statusVerifikacije) //id kupca
+        {
+            ResponsePorudzbinaDto otkazanaPorudzbinaDto = await _porudzbinaService.OtkaziPorudzbinu(id, statusVerifikacije);
+            if (otkazanaPorudzbinaDto.PorudzbinaDto == null)
+            {
+                return BadRequest(otkazanaPorudzbinaDto);
+            }
+            return Ok(otkazanaPorudzbinaDto);
+        }
+
+
+        [HttpGet("getProdavceveNovePorudzbine/{id}")]
+        [Authorize(Roles = "prodavac")]
+        public async Task<IActionResult> GetProdavceveNovePorudzbine(long id) //prodavcev id
+        {
+            List<PorudzbinaDto> prodavcevePorudzbine = await _porudzbinaService.GetProdavceveNovePorudzbine(id);
+            if (prodavcevePorudzbine == null)
+            {
+                return BadRequest("Nesto nije kako treba");
+            }
+
+            return Ok(prodavcevePorudzbine);
+        }
+
+        [HttpGet("getProdavcevePrethodnePorudzbine/{id}")]
+        [Authorize(Roles = "prodavac")]
+        public async Task<IActionResult> GetProdavcevePrethodnePorudzbine(long id) //prodavcev id
+        {
+            List<PorudzbinaDto> prodavcevePrethodnePorudzbineDto = await _porudzbinaService.GetProdavcevePrethodnePorudzbine(id);
+            if (prodavcevePrethodnePorudzbineDto == null)
+            {
+                return BadRequest("Nisu lepo ucitane prodavceve produzbine");
+            }
+            return Ok(prodavcevePrethodnePorudzbineDto);
+
+        }
     }
 }

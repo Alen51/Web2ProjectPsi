@@ -15,6 +15,8 @@ namespace Web2Project.Baza
         public CRUD_Context(DbContextOptions options) : base(options)
 
         {
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

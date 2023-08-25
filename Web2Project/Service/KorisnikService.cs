@@ -94,7 +94,7 @@ namespace Web2Project.Service
 
 
 
-            if(BCrypt.ReferenceEquals(loginKorisnikDto.Lozinka, loginKorisnik.Lozinka)) //(BCrypt.Net.BCrypt.Verify(loginKorisnikDto.Lozinka, loginKorisnik.Lozinka))
+            if(BCrypt.Net.BCrypt.Verify(loginKorisnikDto.Lozinka, loginKorisnik.Lozinka)) //++++ BCrypt.ReferenceEquals(loginKorisnikDto.Lozinka, loginKorisnik.Lozinka)
             {
                 List<Claim> claims = new List<Claim>();
                 if (loginKorisnik.TipKorisnika == TipKorisnika.Administrator)
@@ -108,7 +108,7 @@ namespace Web2Project.Service
                 SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey.Value));
                 SigningCredentials signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 JwtSecurityToken tokenOptions = new JwtSecurityToken(
-                    issuer: "http://localhost:44385",
+                    issuer: "http://localhost:7034",
                     claims: claims,
                     expires: DateTime.Now.AddMinutes(40),
                     signingCredentials: signInCredentials
@@ -128,6 +128,7 @@ namespace Web2Project.Service
 
         public async Task<ResponseDto> Registration(KorisnikDto registerKorisnik)
         {
+            
             if (string.IsNullOrEmpty(registerKorisnik.Email)) //ako nije unet email, baci gresku
                 return new ResponseDto("Niste uneli email");
 
@@ -168,7 +169,7 @@ namespace Web2Project.Service
             SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey.Value));
             SigningCredentials signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             JwtSecurityToken tokenOptions = new JwtSecurityToken(
-                issuer: "http://localhost:44385",
+                issuer: "http://localhost:7034",
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(40),
                 signingCredentials: signInCredentials

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using Web2Project.Dto;
 using Web2Project.Interfaces;
+using Web2Project.Service;
 
 namespace Web2Project.Controllers
 {
@@ -12,12 +13,12 @@ namespace Web2Project.Controllers
     public class KorisnikController : ControllerBase
     {
         private readonly IKorisnikService _korisnikService;
-        private readonly IEmailService _emailVerifyService;
+        
 
-        public KorisnikController(IKorisnikService korisnikService, IEmailService emailVerifyService)
+        public KorisnikController(IKorisnikService korisnikService)
         {
             _korisnikService = korisnikService;
-            _emailVerifyService = emailVerifyService;
+            
         }
 
         [HttpGet("getAll")]
@@ -103,7 +104,7 @@ namespace Web2Project.Controllers
             }
 
             KorisnikDto prodavac = await _korisnikService.GetKorisnikById(id);
-            _emailVerifyService.SendVerificationMail(prodavac.Email, statusVerifikacije);
+            
 
             return Ok(verifiedProdavci);
         }

@@ -16,7 +16,8 @@ namespace Web2Project.Helpers
 
         public static string HashPassword(string password)
         {
-            return crypto.Security.ComputeHash(password,"aaa");
+            // return crypto.Security.ComputeHash(password,"aaa");
+            return BCrypt.Net.BCrypt.HashPassword(password);
         }
 
         public static void UpdateKorisnikFields(Korisnik korisnik, KorisnikDto korisnikDto)
