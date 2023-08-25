@@ -12,11 +12,15 @@ import KupacPorudzbine from './Components/KupacComponents/KupacPorudzbine';
 import KupacPoruci from './Components/KupacComponents/KupacPoruci';
 import AdminDashboard from './Components/AdministratorComponents/AdminDashboard';
 import AdminSvePorudzbine from './Components/AdministratorComponents/AdminSvePorudzbine';
-import AdminVerifikacija from './Components/AdministratorComponents/AdminVerfikacija';
+import AdminVerifikacija from './Components/AdministratorComponents/AdminVerifikacija';
 import ProdavacDashboard from './Components/ProdavacComponents/ProdavacDashboard';
 import ProdavacDodajArtikal from './Components/ProdavacComponents/ProdavacDodajArtikal';
+import ProdavacPregledArtikala from './Components/ProdavacComponents/ProdavacPregledArtikla';
+import ProdavacNovePorudzbine from './Components/ProdavacComponents/ProdavacNovePorudzbine';
+import ProdavacPrethodnePorudzbine from './Components/ProdavacComponents/ProdavacPrethodnePorudzbine';
 import Profil from './Components/ProfileComponents/Profil';
-import PrikazPorudzbine from './Components/PorudzbinaComponents/PrikazPorudzbina'
+import PrikazPorudzbine from './Components/PorudzbinaComponents/PrikazPorudzbina';
+import IzmeniArtikal from './Components/ArtikalComponents/IzmeniArtikal';
 
 function App() {
 
@@ -67,12 +71,12 @@ function App() {
     {path: '/kupacPorudzbine/PrikazPorudzbine/:id', element: <Home></Home>},
     {path: '/prodavacDashboard', element: <ProdavacDashboard></ProdavacDashboard>},
     {path: '/prodavacDodajArtikal', element:<ProdavacDodajArtikal></ProdavacDodajArtikal>},
-    {path: '/prodavacNovePorudzbine', element: <Home></Home>},
-    {path: '/prodavacPrethodnePorudzbine', element: <Home></Home>},
-    {path: '/prodavacNovePorudzbine/PrikazPorudzbine/:id', element: <Home></Home>},
-    {path: '/prodavacPrethodnePorudzbine/PrikazPorudzbine/:id', element: <Home></Home>},
-    {path: '/prodavacPregledArtikala', element:<Home></Home>},
-    {path: '/prodavacPregledArtikala/IzmeniArtikal/:id', element: <Home></Home>},
+    {path: '/prodavacNovePorudzbine', element: <ProdavacNovePorudzbine></ProdavacNovePorudzbine>},
+    {path: '/prodavacPrethodnePorudzbine', element: <ProdavacPrethodnePorudzbine></ProdavacPrethodnePorudzbine>},
+    {path: '/prodavacNovePorudzbine/PrikazPorudzbine/:id', element:<PrikazPorudzbine></PrikazPorudzbine>},
+    {path: '/prodavacPrethodnePorudzbine/PrikazPorudzbine/:id', element: <PrikazPorudzbine></PrikazPorudzbine>},
+    {path: '/prodavacPregledArtikala', element:<ProdavacPregledArtikala></ProdavacPregledArtikala>},
+    {path: '/prodavacPregledArtikala/IzmeniArtikal/:id', element:  <IzmeniArtikal></IzmeniArtikal>},
     {path: '/adminDashboard', element: <AdminDashboard></AdminDashboard>},
     {path: '/adminVerifikacija', element: <AdminVerifikacija></AdminVerifikacija>},
     {path: '/adminSvePorudzbine', element: <AdminSvePorudzbine></AdminSvePorudzbine>},

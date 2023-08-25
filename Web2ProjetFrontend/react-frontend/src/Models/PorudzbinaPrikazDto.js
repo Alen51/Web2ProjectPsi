@@ -1,4 +1,4 @@
-export default class PrikazPorudzbinaDto {
+export default class PorudzbinaPrikazDto  {
     constructor(data){
         this.id = data.id;
         this.adresa = data.adresa;
@@ -15,3 +15,4 @@ export default class PrikazPorudzbinaDto {
         }
     }
 }
+

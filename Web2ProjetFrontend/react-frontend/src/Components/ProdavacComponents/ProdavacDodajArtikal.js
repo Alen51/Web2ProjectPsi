@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AddArtikal } from "../../Services/ArtikalService";
 import UploadImage from "../Other Components/UploadImage";
-import suticaseUrl from "../../Picture/registerPic.png";
+import suticaseUrl from "../../Picture/suitcase.png";
 const ProdavacDodajArtikal = () => {
 
     const [naziv, setNaziv] = useState('');

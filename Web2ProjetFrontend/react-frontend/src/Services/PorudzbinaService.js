@@ -81,6 +81,60 @@ export const OtkaziPorudzbinu = async (id, token) => {
     }
 }
 
+export const GetNoveProdavcevePorudzbine = async (id, token) => {
+    try{
+        const {data} = await axios.get(
+            `${process.env.REACT_APP_API_BACK}/orders/getProdavceveNovePorudzbine/${id}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }, 
+                withCredentials: true
+            }
+        );
+        const novePorudzbine = [];
+        for(var i = 0; i < data.length; i++){
+            var porudzbina = new PorudzbinaDto(data[i]);
+            porudzbina.addAllArtiklePorudzbine(data[i].artikliPorudzbine);
+            novePorudzbine.push(porudzbina);
+        }
+        return novePorudzbine;
+    }catch(err){
+        console.log(err);
+        alert("Nesto se desilo prilikom dobavljanja informacija novim prodavcevim porudzbinama")
+        return null;
+    }
+}
+
+export const GetProdavcevePrethodnePorudzbine = async (id, token) => {
+    try{
+        const {data} = await axios.get(
+            `${process.env.REACT_APP_API_BACK}/orders/getProdavcevePrethodnePorudzbine/${id}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }, 
+                withCredentials: true
+            }
+        );
+        const prethodnePorudzbine = [];
+        for(var i = 0; i < data.length; i++){
+            var porudzbina = new PorudzbinaDto(data[i]);
+            porudzbina.addAllArtiklePorudzbine(data[i].artikliPorudzbine);
+            prethodnePorudzbine.push(porudzbina);
+        }
+        return prethodnePorudzbine;
+        
+    }catch(err){
+        console.log(err);
+        alert("Nesto se desilo prilikom dobavljanja informacija prethodnim prodavcevim porudzbinama")
+        return null;
+    }
+}
+
+
 
 
 
@@ -109,7 +163,7 @@ export const GetSvePorudzbine = async (token) => {
         return data;
     }catch(err){
         console.log(err);
-        alert("Nesto se desilo prilikom dobavljanja informacija o svim porudybinama")
+        alert("Nesto se desilo prilikom dobavljanja informacija o svim porudzbinama")
         return null;
     }
 }

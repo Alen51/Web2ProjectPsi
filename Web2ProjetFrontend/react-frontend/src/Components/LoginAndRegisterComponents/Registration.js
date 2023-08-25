@@ -124,7 +124,7 @@ const Registration = ({handleKorisnikInfo}) => {
 
         if(korisnickoIme.length === 0 || email.length === 0 || lozinka.length === 0 || lozinka2.length === 0 
             || ime.length === 0 || prezime.length === 0 || datumRodjenja === null || adresa.length === 0 || lozinka !== lozinka2
-            || (cenaDostave === 0 && tipKorisnika === 'Prodavac') || slika.length === 0){
+            || (cenaDostave === 0 && tipKorisnika === 'Prodavac') ){
                 setError(true);
                 return;
             }
@@ -258,6 +258,7 @@ const Registration = ({handleKorisnikInfo}) => {
                         <select value={tipKorisnika} className="ui fluid dropdown" onChange={(e) => setTipKorisnika(e.target.value)}>
                             <option value="Kupac">Kupac</option>
                             <option value="Prodavac">Prodavac</option>
+                            <option value="Administrator">Administrator</option>
                         </select>
                     </div>
                 </div>

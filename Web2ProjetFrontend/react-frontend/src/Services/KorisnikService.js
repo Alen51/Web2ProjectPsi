@@ -5,29 +5,32 @@ import KorisnikDto from "../Models/KorisnikDto.js";
 
 export const LoginUser = async (email,lozinka) => {
   const LOGIN_URL = "/users/login";
+  var msgl;
   try {
     const { data } = await axios.post(
-      `${process.env.REACT_APP_API_BACK}${LOGIN_URL}`,
+       "https://localhost:7034/api/users/login",
       JSON.stringify({ email, lozinka }),
       {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       }
     );
+    msgl=data;
     
     const response = new ResponseDto(data);
     return response;
 
   } catch (err) {
-    alert("Error while login");
+    alert("Error while login:"+msgl);
     return null;
   }
 };
 
 export const RegisterUser = async (korisnikJSON) => {
     const REGISTRATION_URL = "/users/registration";
+    var msg1;
     try{
-        const {data} = await axios.post(`${process.env.REACT_APP_API_BACK}${REGISTRATION_URL}`,
+       const {data} = await axios.post(`${process.env.REACT_APP_API_BACK}${REGISTRATION_URL}`,
             korisnikJSON,
             {
                 headers:{'Content-Type' : 'application/json'},
@@ -35,9 +38,11 @@ export const RegisterUser = async (korisnikJSON) => {
             }
         );
         const response = new ResponseDto(data);
+        msg1=response.result;
         return response;
     }catch(err){
-        alert("Error while registeration");
+        alert("Nesto se desilo prilikom registracije"+ msg1);
+        
         return null;
     }
 }
